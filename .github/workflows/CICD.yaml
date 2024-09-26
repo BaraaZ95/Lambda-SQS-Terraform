@@ -88,6 +88,11 @@ jobs:
           ls -la
           echo "Contents of lambda directory:"
           ls -la lambda/
+      - name: Upload lambda-layer.zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: lambda-layer
+          path: lambda-layer.zip
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -130,6 +135,16 @@ jobs:
           ls -l lambda-layer.zip
           file lambda-layer.zip
           stat lambda-layer.zip
+
+          - name: Download lambda-layer.zip
+          uses: actions/download-artifact@v2
+          with:
+            name: lambda-layer
+        
+      - name: Verify lambda-layer.zip
+        run: |
+          ls -l lambda-layer.zip
+          file lambda-layer.zip
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve

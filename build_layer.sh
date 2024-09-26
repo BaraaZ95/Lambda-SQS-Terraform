@@ -20,5 +20,3 @@ rm -rf "${LAYER_DIR}"
 
 echo "Lambda layer created: ${SCRIPT_DIR}/lambda-layer.zip"
 ls -l "${SCRIPT_DIR}/lambda-layer.zip"  # List the created zip file
-
-chmod 644 lambda-layer.zip
