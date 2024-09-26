@@ -126,5 +126,6 @@ jobs:
           terraform plan 
       - name: Terraform Apply
         run: |
+          echo "Current directory before Terraform apply: $(pwd)"
           terraform apply -auto-approve
           
