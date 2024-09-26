@@ -3,10 +3,11 @@ provider "aws" {
 }
 
 terraform {
+  required_version = ">= 1.0.0"
   cloud {
     organization = "Debugging"
     workspaces {
-      name = "learn-terraform-github-actions"
+      name = "Lambda-Terraform"
     }
   }
 }
@@ -129,8 +130,8 @@ resource "aws_lambda_function" "user_profile_lambda" {
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
   runtime          = "python3.10"
   layers           = [aws_lambda_layer_version.lambda_layer.arn]
-  memory_size      = 128
-  timeout          = 15
+  memory_size      = var.memory_size
+  timeout          = var.timeout
   environment {
     variables = {
       ENV           = "prod"

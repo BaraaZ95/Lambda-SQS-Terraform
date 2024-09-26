@@ -39,10 +39,8 @@ jobs:
     - name: Check Terraform formatting
       run: terraform fmt -check -recursive
     - name: Format Python code with Ruff
-      if: failure()
       run: ruff format .
     - name: Format Terraform code
-      if: failure()
       run: terraform fmt -recursive
 
   test:
