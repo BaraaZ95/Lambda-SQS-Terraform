@@ -89,7 +89,7 @@ jobs:
           echo "Contents of lambda directory:"
           ls -la lambda/
       - name: Upload lambda-layer.zip
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: lambda-layer
           path: lambda-layer.zip
@@ -137,7 +137,7 @@ jobs:
           stat lambda-layer.zip
 
           - name: Download lambda-layer.zip
-          uses: actions/download-artifact@v2
+          uses: actions/download-artifact@v4
           with:
             name: lambda-layer
         
