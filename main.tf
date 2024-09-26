@@ -159,7 +159,7 @@ resource "aws_lambda_function" "process_queue_lambda" {
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
   runtime          = "python3.10"
   layers           = [aws_lambda_layer_version.lambda_layer.arn]
-  memory_size      = 128
+  memory_size      = var.memory_size
   timeout          = 15
 
   environment {
