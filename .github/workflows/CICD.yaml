@@ -123,6 +123,10 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Download lambda-layer.zip
+        uses: actions/download-artifact@v4
+        with:
+          name: lambda-layer
 
       - name: Terraform Init
         run: terraform init
@@ -146,6 +150,8 @@ jobs:
           ls -l lambda-layer.zip
           file lambda-layer.zip
       - name: Terraform Apply
+        env:
+          TF_CLI_ARGS_plan: "-var-file=terraform.tfvars -var 'lambda_layer_path=./lambda-layer.zip'"
         run: |
           terraform apply -auto-approve
           
