@@ -117,15 +117,20 @@ resource "aws_s3_bucket_public_access_block" "lambda_layer_bucket" {
   restrict_public_buckets = true
 }
 
-
+resource "aws_s3_object" "lambda_layer" {
+  bucket = aws_s3_bucket.lambda_layer_bucket.id
+  key    = "lambda-layer.zip"
+  source = "${path.module}/lambda-layer.zip"
+}
 
 resource "aws_lambda_layer_version" "lambda_layer" {
   layer_name = "lambda-dependencies-layer"
   s3_bucket  = aws_s3_bucket.lambda_layer_bucket.id
-  s3_key     = var.lambda_layer_s3_key
+  s3_key     = aws_s3_object.lambda_layer.key
 
   compatible_runtimes = ["python3.10"]
 }
+
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_dir  = "${path.module}/lambda"
