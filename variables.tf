@@ -26,11 +26,7 @@ variable "function_name" {
   default     = "user-profile"
 
 }
-variable "organization" {
-  type        = string
-  description = "Name of the organization this infrastructure is for"
-  default     = "baraa"
-}
+
 
 variable "timeout" {
   type        = number

@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 terraform {
@@ -86,7 +86,7 @@ resource "aws_sqs_queue" "task_queue" {
   kms_data_key_reuse_period_seconds = 300
 
   tags = {
-    Environment = "prod"
+    Environment = var.env
   }
   lifecycle {
     create_before_destroy = true
@@ -134,7 +134,7 @@ data "archive_file" "lambda_zip" {
 
 resource "aws_lambda_function" "user_profile_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
-  function_name    = "user_profile_lambda"
+  function_name    = var.function_name
   role             = aws_iam_role.lambda_role.arn
   handler          = "lambda_function.handler"
   source_code_hash = filebase64sha256(data.archive_file.lambda_zip.output_path)
@@ -144,7 +144,7 @@ resource "aws_lambda_function" "user_profile_lambda" {
   timeout          = var.timeout
   environment {
     variables = {
-      ENV           = "prod"
+      ENV           = var.env
       SQS_QUEUE_URL = aws_sqs_queue.task_queue.url
     }
   }
@@ -164,7 +164,7 @@ resource "aws_lambda_function" "process_queue_lambda" {
 
   environment {
     variables = {
-      ENV           = "prod"
+      ENV           = var.env
       SQS_QUEUE_URL = aws_sqs_queue.task_queue.url
     }
   }
@@ -247,7 +247,7 @@ resource "aws_api_gateway_deployment" "this_deployment" {
   depends_on = [
   aws_api_gateway_integration.this_user_integration]
   rest_api_id = aws_api_gateway_rest_api.this_api.id
-  stage_name  = "prod"
+  stage_name  = var.env
 
   lifecycle {
     create_before_destroy = true
