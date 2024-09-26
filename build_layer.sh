@@ -12,11 +12,11 @@ pip install --platform=manylinux2014_x86_64 --implementation=cp --only-binary=:a
 
 # Create the zip file in the script directory
 cd "${LAYER_DIR}"
-zip -r "${SCRIPT_DIR}/layer/lambda-layer.zip" python
+zip -r "${SCRIPT_DIR}/lambda-layer.zip" python
 
 # Clean up
 cd "${SCRIPT_DIR}"
 rm -rf "${LAYER_DIR}"
 
-echo "Lambda layer created: ${SCRIPT_DIR}/layer/lambda-layer.zip"
+echo "Lambda layer created: ${SCRIPT_DIR}/lambda-layer.zip"
 ls -l "${SCRIPT_DIR}/lambda-layer.zip"  # List the created zip file
