@@ -28,6 +28,7 @@ variable "function_name" {
 }
 
 variable "lambda_layer_zip_path" {
+  type    = string
   default = "./lambda-layer.zip"
 }
 
