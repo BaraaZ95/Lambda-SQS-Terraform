@@ -153,7 +153,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
+      - name: Terraform Plan
+        run: |
+          terraform plan -var="lambda_layer_s3_key=${{ needs.build-and-deploy.outputs.LAYER_S3_KEY }}"
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve \
