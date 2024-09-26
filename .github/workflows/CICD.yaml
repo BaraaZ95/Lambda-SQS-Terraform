@@ -137,13 +137,6 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -l lambda-layer.zip
-          file lambda-layer.zip
-          stat lambda-layer.zip
-
-          - name: Download lambda-layer.zip
-          uses: actions/download-artifact@v4
-          with:
-            name: lambda-layer
         
       - name: Verify lambda-layer.zip
         run: |
