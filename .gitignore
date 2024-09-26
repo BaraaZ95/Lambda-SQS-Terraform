@@ -26,7 +26,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 .history
-chilldays-firebase-adminsdk-xvzbi-97a1e2fabd.json
 python
 create_layer
 # PyInstaller
@@ -164,7 +163,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .terraform/
-*.zip
 awscliv2.zip
 
 # Terraform .gitignore
