@@ -7,7 +7,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.0"
     }
     archive = {
       source  = "hashicorp/archive"
@@ -100,7 +100,7 @@ resource "aws_sqs_queue" "task_queue" {
 
 
 resource "aws_s3_bucket" "lambda_layer_bucket" {
-  bucket        = "lambda-layer-bucket-user-id"
+  bucket        = var.lambda_layer_bucket_name
   force_destroy = true
   lifecycle {
     create_before_destroy = true

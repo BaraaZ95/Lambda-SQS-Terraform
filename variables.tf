@@ -20,6 +20,12 @@ variable "lambda_layer_s3_key" {
   # default     = "lambda-layer.zip"
 }
 
+variable "lambda_layer_bucket_name" {
+  type        = string
+  description = "Name of the S3 bucket where the Lambda layer zip file is stored"
+  default     = "lambda-terraform-bz"
+
+}
 variable "function_name" {
   type        = string
   description = "Name of the Lambda function"
