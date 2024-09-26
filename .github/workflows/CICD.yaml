@@ -124,8 +124,13 @@ jobs:
       - name: Terraform Plan
         run: |
           terraform plan 
+      - name: Verify lambda-layer.zip before Terraform apply
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -l lambda-layer.zip
+          file lambda-layer.zip
+          stat lambda-layer.zip
       - name: Terraform Apply
         run: |
-          echo "Current directory before Terraform apply: $(pwd)"
           terraform apply -auto-approve
           
