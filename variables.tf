@@ -14,12 +14,6 @@ variable "region" {
 
 }
 
-variable "lambda_layer_s3_key" {
-  description = "S3 key for the Lambda layer zip file"
-  type        = string
-  # default     = "lambda-layer.zip"
-}
-
 variable "lambda_layer_bucket_name" {
   type        = string
   description = "Name of the S3 bucket where the Lambda layer zip file is stored"
