@@ -1,0 +1,1 @@
+{"statusCode": 202, "headers": {"Content-Type": "application/json"}, "body": "{\"message\": \"Response sent to SQS. User profile data processing queued for user_id: 123\"}", "isBase64Encoded": false}

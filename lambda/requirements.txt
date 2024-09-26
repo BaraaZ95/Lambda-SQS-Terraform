@@ -1,0 +1,2 @@
+boto3==1.34.146
+firebase_admin==6.5.0
