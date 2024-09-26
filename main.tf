@@ -120,7 +120,7 @@ resource "aws_s3_bucket_public_access_block" "lambda_layer_bucket" {
 resource "aws_s3_object" "lambda_layer" {
   bucket = aws_s3_bucket.lambda_layer_bucket.id
   key    = "lambda-layer.zip"
-  source = "${path.module}/lambda-layer.zip"
+  source = "${path.module}/layer/lambda-layer.zip"
 }
 
 resource "aws_lambda_layer_version" "lambda_layer" {
