@@ -124,10 +124,8 @@ resource "aws_s3_object" "lambda_layer" {
 }
 
 resource "aws_lambda_layer_version" "lambda_layer" {
-  layer_name = "lambda-dependencies-layer"
-  s3_bucket  = aws_s3_bucket.lambda_layer_bucket.id
-  s3_key     = aws_s3_object.lambda_layer.key
-
+  filename            = "${path.module}/layer/lambda-layer.zip"
+  layer_name          = "lambda-dependencies-layer"
   compatible_runtimes = ["python3.10"]
 }
 
