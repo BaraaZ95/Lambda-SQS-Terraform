@@ -120,15 +120,14 @@ resource "aws_s3_bucket_public_access_block" "lambda_layer_bucket" {
 resource "aws_s3_object" "lambda_layer" {
   bucket = aws_s3_bucket.lambda_layer_bucket.id
   key    = "lambda-layer.zip"
-  source = "${path.module}/lambda-layer.zip"
+  source = var.lambda_layer_zip_path
 }
 
 resource "aws_lambda_layer_version" "lambda_layer" {
-  filename            = "${path.module}/lambda-layer.zip"
+  filename            = var.lambda_layer_zip_path
   layer_name          = "lambda-dependencies-layer"
   compatible_runtimes = ["python3.10"]
 }
-
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_dir  = "${path.module}/lambda"

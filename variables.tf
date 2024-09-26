@@ -27,6 +27,9 @@ variable "function_name" {
 
 }
 
+variable "lambda_layer_zip_path" {
+  default = "./lambda-layer.zip"
+}
 
 variable "timeout" {
   type        = number
