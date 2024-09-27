@@ -86,8 +86,6 @@ jobs:
           ./build_layer.sh
           echo "Contents of current directory:"
           ls -la
-          echo "Contents of lambda directory:"
-          ls -la lambda/
       - name: Upload lambda-layer.zip
         uses: actions/upload-artifact@v4
         with:
@@ -133,15 +131,6 @@ jobs:
       - name: Terraform Plan
         run: |
           terraform plan 
-      - name: Verify lambda-layer.zip before Terraform apply
-        run: |
-          echo "Current directory: $(pwd)"
-          ls -l lambda-layer.zip
-        
-      - name: Verify lambda-layer.zip
-        run: |
-          ls -l lambda-layer.zip
-          file lambda-layer.zip
       - name: Terraform Apply
         env:
           TF_CLI_ARGS_plan: "-var-file=terraform.tfvars -var 'lambda_layer_path=./lambda-layer.zip'"
